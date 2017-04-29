@@ -12,10 +12,14 @@ class MainTableTableViewController: UITableViewController {
 
     let url = URL(string:"https://itunes.apple.com/search?term=flappy&entity=software")
     
-    var applicationArray = Array<ApplicationDetail>()
+    var applicationArray = Array<AnyObject>()
+    
+    var cache: NSCache<AnyObject, AnyObject>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.cache = NSCache()
         
         fetchDetailsFromServer()
 
@@ -43,12 +47,35 @@ class MainTableTableViewController: UITableViewController {
         return self.applicationArray.count
     }
 
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
 
         // Configure the cell...
+        let appDetail = self.applicationArray[indexPath.row] as! ApplicationDetail
         
-        cell.textLabel?.text = self.applicationArray[indexPath.row].sellerName
+        cell.textLabel?.text = appDetail.sellerName
+        cell.imageView?.image = UIImage(named: "placeholder")
+
+        if self.cache?.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil {
+            print("Image already in use")
+            
+            cell.imageView?.image = cache?.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
+            
+        }else {
+            
+            let imageUrl = URL(string: appDetail.imageUrl)!
+            
+            URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, reposnse, error) in
+                DispatchQueue.main.async(execute: {
+                    let cellToUpdate = tableView.cellForRow(at: indexPath)
+                    cellToUpdate?.imageView?.image = UIImage(data: data!)
+                    self.cache?.setObject(data as AnyObject, forKey:(indexPath as NSIndexPath).row as AnyObject)
+                    cellToUpdate?.setNeedsLayout()
+                })
+            }).resume()
+        }
+
         return cell
     }
     
