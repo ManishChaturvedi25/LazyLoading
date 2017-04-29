@@ -59,8 +59,12 @@ class MainTableTableViewController: UITableViewController {
 
         if self.cache?.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil {
             print("Image already in use")
+            let cellToUpdate = tableView.cellForRow(at: indexPath)
+            let imageData = cache?.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? Data
             
-            cell.imageView?.image = cache?.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
+            cell.imageView?.image = UIImage(data: imageData!)
+            
+            cellToUpdate?.setNeedsLayout()
             
         }else {
             
