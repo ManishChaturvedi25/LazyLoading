@@ -10,11 +10,10 @@ import UIKit
 
 class MainTableTableViewController: UITableViewController {
 
-        let url = URL(string:"https://itunes.apple.com/search?term=flappy&entity=software")
+    let url = URL(string:"https://itunes.apple.com/search?term=flappy&entity=software")
     
-    
+    var applicationArray = Array<ApplicationDetail>()
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +40,7 @@ class MainTableTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return self.applicationArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,10 +48,7 @@ class MainTableTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        cell.textLabel?.text = "Some Value"
-        
-        
-        
+        cell.textLabel?.text = self.applicationArray[indexPath.row].sellerName
         return cell
     }
     
@@ -91,9 +87,15 @@ class MainTableTableViewController: UITableViewController {
                                 return
                             }
                             
+                            let appDetail = ApplicationDetail(imageUrl: urlString, sellerName: sellerName)
                             
-                            
+                            self.applicationArray.append(appDetail)
                         }
+                        
+                        DispatchQueue.main.async(execute: {
+                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                            self.tableView.reloadData()
+                        })
                         
                     }catch {
                         

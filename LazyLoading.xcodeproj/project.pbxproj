@@ -12,6 +12,7 @@
 		9700B7781EB23C6C00ECF886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9700B7771EB23C6C00ECF886 /* Assets.xcassets */; };
 		9700B77B1EB23C6C00ECF886 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9700B7791EB23C6C00ECF886 /* LaunchScreen.storyboard */; };
 		9700B7831EB30F6300ECF886 /* MainTableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9700B7821EB30F6300ECF886 /* MainTableTableViewController.swift */; };
+		9700B7851EB4ED9E00ECF886 /* ApplicationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9700B7841EB4ED9E00ECF886 /* ApplicationDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		9700B77A1EB23C6C00ECF886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9700B77C1EB23C6C00ECF886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9700B7821EB30F6300ECF886 /* MainTableTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableTableViewController.swift; sourceTree = "<group>"; };
+		9700B7841EB4ED9E00ECF886 /* ApplicationDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				9700B7791EB23C6C00ECF886 /* LaunchScreen.storyboard */,
 				9700B77C1EB23C6C00ECF886 /* Info.plist */,
 				9700B7821EB30F6300ECF886 /* MainTableTableViewController.swift */,
+				9700B7841EB4ED9E00ECF886 /* ApplicationDetail.swift */,
 			);
 			path = LazyLoading;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			files = (
 				9700B7711EB23C6C00ECF886 /* AppDelegate.swift in Sources */,
 				9700B7831EB30F6300ECF886 /* MainTableTableViewController.swift in Sources */,
+				9700B7851EB4ED9E00ECF886 /* ApplicationDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +306,7 @@
 				9700B7811EB23C6C00ECF886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
